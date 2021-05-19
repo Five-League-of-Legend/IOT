@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IOT.Core.Common\IOT.Core.Common.csproj" />
+    <ProjectReference Include="..\IOT.Core.IRepository\IOT.Core.IRepository.csproj" />
+    <ProjectReference Include="..\IOT.Core.Model\IOT.Core.Model.csproj" />
+    <ProjectReference Include="..\IOT.Core.Repository\IOT.Core.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

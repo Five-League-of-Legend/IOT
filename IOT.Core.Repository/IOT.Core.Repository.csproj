@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IOT.Core.Common\IOT.Core.Common.csproj" />
+    <ProjectReference Include="..\IOT.Core.IRepository\IOT.Core.IRepository.csproj" />
+    <ProjectReference Include="..\IOT.Core.Model\IOT.Core.Model.csproj" />
+  </ItemGroup>
+
+</Project>
