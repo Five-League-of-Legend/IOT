@@ -10,5 +10,6 @@ namespace IOT.Core.IRepository.CommType
     {
         List<IOT.Core.Model.CommType> UptState(int id);
         int Uptss(Model.CommType c);
+        List<IOT.Core.Model.CommType> Query(int tid = 0);
     }
 }

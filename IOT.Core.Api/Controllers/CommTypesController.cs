@@ -22,9 +22,10 @@ namespace IOT.Core.Api.Controllers
         }
         [Route("api/Show")]
         [HttpGet]
-        public List<IOT.Core.Model.CommType> Show()
+        public List<IOT.Core.Model.CommType> Show(int tid=0)
         {
-            return _commTypeRepository.Query();
+
+            return _commTypeRepository.Query(tid);
         }
         [Route("api/Add")]
         [HttpPost]
@@ -36,6 +37,7 @@ namespace IOT.Core.Api.Controllers
         [HttpPost]
         public int Del(string ids)
         {
+            
             return _commTypeRepository.Delete(ids);
         }
         [Route("api/UptState")]
@@ -43,7 +45,7 @@ namespace IOT.Core.Api.Controllers
         public List<Model.CommType> Upts(int id)
         {
             return _commTypeRepository.UptState(id);
-        }
+        }  
         [Route("api/Uptss")]
         [HttpPost]
         public int Uptss(Model.CommType c)

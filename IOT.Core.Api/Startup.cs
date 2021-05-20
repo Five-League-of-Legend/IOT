@@ -1,6 +1,4 @@
 using IOT.Core.IRepository;
-using IOT.Core.IRepository.Activity;
-using IOT.Core.Repository.Activity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -12,8 +10,10 @@ using IOT.Core.IRepository.CommodityRepository;
 namespace IOT.Core.Api
 {
     using IOT.Core.IRepository.CommType;
+    using IOT.Core.IRepository.Specification;
     using IOT.Core.Repository.Commodity;
     using IOT.Core.Repository.CommType;
+    using IOT.Core.Repository.Specification;
 
     public class Startup
     {
@@ -34,7 +34,6 @@ namespace IOT.Core.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "IOT.Core.Api", Version = "v1" });
             });
 
-            services.AddSingleton<IActivityRepository, ActivityRepository>();
 
 
             services.AddCors(options => 
@@ -45,6 +44,7 @@ namespace IOT.Core.Api
             services.AddScoped<IBaseRepository<IOT.Core.Model.Commodity>, CommodityRepository>();
             services.AddScoped<ICommodityRepository, CommodityRepository>();
             services.AddScoped<ICommTypeRepository, CommTypeRepository>();
+            services.AddScoped<ISpecificationRepository, SpecificationRepository>();
 
         }
 
