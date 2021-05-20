@@ -10,7 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IOT.Core.Common\IOT.Core.Common.csproj" />
     <ProjectReference Include="..\IOT.Core.IRepository\IOT.Core.IRepository.csproj" />
+    <ProjectReference Include="..\IOT.Core.Model\IOT.Core.Model.csproj" />
     <ProjectReference Include="..\IOT.Core.Repository\IOT.Core.Repository.csproj" />
   </ItemGroup>
 

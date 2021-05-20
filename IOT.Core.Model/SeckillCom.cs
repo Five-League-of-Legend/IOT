@@ -22,6 +22,13 @@ namespace IOT.Core.Model
         public int State          { get; set; }
         public float SeckilPrice    { get; set; }
         public int LimitNum { get; set; }
-       
+        public string ActivityName { get; set; }
+        public DateTime BeginTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string CommodityPic { get; set; }
+        public float ShopPrice { get; set; }
+        public DateTime times { get; set; }
+        public string CommodityName { get; set; }
+
     }
 }

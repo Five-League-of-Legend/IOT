@@ -32,6 +32,8 @@ namespace IOT.Core.Model
         public string Size          { get; set; }
         public int DeleteState   { get; set; }
         public int IsSell        { get; set; }
+        public int ColonelID { get; set; }
+        public int Mid { get; set; }
         public float CostPrice     { get; set; }
     }
 }

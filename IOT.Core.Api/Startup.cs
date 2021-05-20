@@ -1,4 +1,11 @@
+using IOT.Core.IRepository;
 using IOT.Core.IRepository.Activity;
+using IOT.Core.IRepository.Colonel;
+using IOT.Core.IRepository.Colonel.Brokerage;
+using IOT.Core.IRepository.Colonel.ColonelGrade;
+using IOT.Core.IRepository.Colonel.ColonelManagement;
+using IOT.Core.IRepository.Colonel.GroupPurchase;
+using IOT.Core.IRepository.Colonel.Path;
 using IOT.Core.IRepository.Commodity;
 using IOT.Core.IRepository.Delivery;
 using IOT.Core.IRepository.OrderInfo;
@@ -10,6 +17,12 @@ using IOT.Core.IRepository.Store_Configuration;
 using IOT.Core.IRepository.Warehouse;
 using IOT.Core.IRepository.Withdrawal;
 using IOT.Core.Repository.Activity;
+using IOT.Core.Repository.Colonel;
+using IOT.Core.Repository.Colonel.Brokerage;
+using IOT.Core.Repository.Colonel.ColonelGrade;
+using IOT.Core.Repository.Colonel.ColonelManagement;
+using IOT.Core.Repository.Colonel.GroupPurchase;
+using IOT.Core.Repository.Colonel.Path;
 using IOT.Core.Repository.Commodity;
 using IOT.Core.Repository.Delivery;
 using IOT.Core.Repository.OrderInfo;
@@ -32,9 +45,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IOT.Core.IRepository.CommodityRepository;
 
 namespace IOT.Core.Api
 {
+    using IOT.Core.IRepository.CommType;
+    using IOT.Core.IRepository.Specification;
+    using IOT.Core.Repository.Commodity;
+    using IOT.Core.Repository.CommType;
+    using IOT.Core.Repository.Specification;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -67,10 +87,31 @@ namespace IOT.Core.Api
             services.AddSingleton<IWithdrawalRepository, WithdrawalRepository>();
             
 
+            services.AddSingleton<IColonelRepository, ColonelRepository>();
+
+            services.AddSingleton<IColonelManagementRepository, ColonelManagementRepository>();
+
+            services.AddSingleton<IColonelGradeRepository, ColonelGradeRepository>();
+
+            services.AddSingleton<IGroupPurchaseRepository, GroupPurchaseRepository>();
+
+            services.AddSingleton<IPathRepository, PathRepository>();
+
+            services.AddSingleton<IBrokerageRepository, BrokerageRepository>();
+
+
+
 
             services.AddCors(options => 
             options.AddPolicy("cors",
             p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+          
+
+            services.AddScoped<IBaseRepository<IOT.Core.Model.Commodity>, CommodityRepository>();
+            services.AddScoped<ICommodityRepository, CommodityRepository>();
+            services.AddScoped<ICommTypeRepository, CommTypeRepository>();
+            services.AddScoped<ISpecificationRepository, SpecificationRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

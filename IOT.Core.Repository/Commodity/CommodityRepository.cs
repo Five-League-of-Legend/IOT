@@ -5,33 +5,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IOT.Core.Common;
+using IOT.Core.IRepository;
+using IOT.Core.IRepository.CommodityRepository;
 
 namespace IOT.Core.Repository.Commodity
 {
-    /// <summary>
-    /// 门店_商品
-    /// </summary>
     public class CommodityRepository : ICommodityRepository
     {
-        // 删除
-        public int DelCommodity(string id)
+        public int Delete(string ids)
         {
-            string sql = $"delete from Commodity where CommodityId={id}";
+            throw new NotImplementedException();
+        }
+
+        public int Insert(Model.Commodity Model)
+        {
+            string sql = $"insert into Commodity values(null,'{Model.CommodityName}','{Model.CommodityPic}','{Model.ShopPrice}',{Model.ShopNum},{Model.Repertory},{Model.Sort},0,now(),{Model.TId},'{Model.Remark}',{Model.TemplateId},'{Model.CommodityKey}','{Model.SendAddress}','{Model.Job}',{Model.Integral},{Model.SId},'{Model.Color}','{Model.Size}',0,0,{Model.CostPrice},{Model.ColonelID},{Model.Mid})";
+
             return DapperHelper.Execute(sql);
         }
 
-        // 显示
-        public List<Model.Commodity> ShowCommodity()
+        public List<Model.Commodity> Query()
         {
-            string sql = "select * from Commodity";
+            string sql = "select * from Commodity ";
             return DapperHelper.GetList<Model.Commodity>(sql);
         }
-
-        // 修改
-        public int UptCommodity(Model.Commodity a)
+        public int Uptstate(int id)
         {
-            string sql = $"Update Commodity Set  CommodityName='{a.CommodityName}' , CommodityPic='{a.CommodityPic}', ShopPrice='{a.ShopPrice}'," +
-                $"ShopNum='{a.ShopNum}', Repertory='{a.Repertory}', Sort='{a.Sort}', State='{a.State}', OperationDate='{a.OperationDate}' where CommodityId='{a.CommodityId}' ";
+            var list = DapperHelper.GetList<Model.Commodity>($"select * from Commodity ").ToList();
+            IOT.Core.Model.Commodity commodity = list.FirstOrDefault(m => m.CommodityId == id);
+            if (commodity.DeleteState == 0)
+            {
+                commodity.DeleteState = 1;
+            }
+            else
+            {
+                commodity.DeleteState = 0;
+            }
+
+            string sql = $"update Commodity set DeleteState={commodity.DeleteState} where CommodityId={commodity.CommodityId}";
+            return DapperHelper.Execute(sql);
+        }
+        public int Uptsstate(int id)
+        {
+            IOT.Core.Model.Commodity commodity = DapperHelper.GetList<Model.Commodity>($"select * from Commodity where CommodityId={id}").FirstOrDefault();
+            if (commodity.IsSell == 0)
+            {
+                commodity.IsSell = 1;
+            }
+            else
+            {
+                commodity.IsSell = 0;
+            }
+            string sql = $"update Commodity set IsSell={commodity.IsSell} where CommodityId={commodity.CommodityId}";
             return DapperHelper.Execute(sql);
         }
     }
